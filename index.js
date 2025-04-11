@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-mongoose.connect("mongodb://127.0.0.1:27017/api")
+mongoose.connect(process.env.MONGO_URI)
 .then(()=> console.log("DB connected"))
 
 const app=express();
@@ -50,6 +50,6 @@ app
   return res.json({user:users});
 })
 
-const port=8000;
+const port=process.env.PORT || 5000;
 
 app.listen(port,()=> console.log("Server Started"))
